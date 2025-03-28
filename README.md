@@ -13,6 +13,7 @@
 10. [Running Tests](#10-running-tests)
 11. [Postman Collection](#11-postman-collection)
 12. [cURL](#12-curl)
+13. [Docker](#13-docker)
 
 ## 1. Overview
 
@@ -82,7 +83,7 @@ The H2 database console is available at [http://localhost:8080/h2-console](http:
 
 ## 9. Getting Started 🚀
 
-1. **Clone the repository:**
+1. **Clone the repository:** (If you use bundle file, skip this step)
     ```sh
     git clone https://github.com/aandmaldonado/backend-technical-test-v2.git
     cd backend-technical-test-v2
@@ -161,3 +162,18 @@ curl --location 'localhost:8080/orders/search?filter=%C3%81lva' \
 --header 'Cookie: JSESSIONID=8858AD0BFADC46B74E237F686474909C' \
 --data ''
 ```
+
+## 13. Docker
+To run the application in Docker, follow these steps:
+1. **Build local project:**
+   ```sh
+    ./gradlew build
+    ```
+2. **Build Docker image:**
+   ```sh
+    docker-compose build
+    ```
+3. **Run Docker container:**
+    ```sh
+     docker-compose up
+     ```
