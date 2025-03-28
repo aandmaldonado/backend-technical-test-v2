@@ -1,4 +1,5 @@
 .gradle
+*.bundle
 /out/
 /build/
 /target/
