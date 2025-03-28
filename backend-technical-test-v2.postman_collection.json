@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "8d08c56f-5ebe-4b9d-b2e3-cccf0f42c2e4",
+		"name": "backend-technical-test-v2",
+		"description": "## Java Engineer technical test\n\nSpring based application that allows us to manage the orders of the \"pilotes\" through some API. _Pilotes of the great Miquel Montoro_ are a Majorcan recipe that consisting of a meatball stew.\n\n- Create a pilotes order, choosing between 5, 10 or 15 pilotes.\n    \n- Update a pilotes order. During the 5 minutes following the creation of the order it will be allowed to update the order data; after that time it will not be possible to modify any data of the order because Miquel will be occupied cooking thepilotes.\n    \n- Search orders by customer data. Allow partial searches: e.g., all orders of customers whose name contains an “a” in their name.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25011926"
+	},
+	"item": [
+		{
+			"name": "create order",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client\": {\n        \"firstName\": \"Álvaro\",\n        \"lastName\": \"Maldonado\",\n        \"telephone\": \"+34641962396\"\n    },\n    \"deliveryAddress\": {\n        \"city\": \"Gandia\",\n        \"street\": \"Carrer de França 12\",\n        \"postcode\": \"46730\",\n        \"country\": \"Spain\"\n    },\n    \"pilotes\": \"5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update order",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client\": {\n        \"firstName\": \"Álvaro\",\n        \"lastName\": \"Maldonado\",\n        \"telephone\": \"+34641962396\"\n    },\n    \"deliveryAddress\": {\n        \"city\": \"Gandia\",\n        \"street\": \"Carrer de França 12\",\n        \"postcode\": \"46730\",\n        \"country\": \"Spain\"\n    },\n    \"pilotes\": \"5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/orders/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search order by customer info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/orders/search?filter=Álva",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"search"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "Álva"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

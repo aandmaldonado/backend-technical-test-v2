@@ -1,0 +1,47 @@
+openapi:
+  dev-url: http://localhost:8080
+  dev-url.description: "Server URL in Development environment"
+
+springdoc:
+  packages-to-scan: com.tui.proof.controller
+  swagger-ui:
+    tryItOutEnabled: true
+    operationsSorter: method
+    tagsSorter: alpha
+    filter: true
+
+user:
+  credentials:
+    username: user
+    password: user
+    role: USER
+
+spring:
+  allowed:
+    resources: /h2-console/**
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: admin
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        enable_lazy_load_no_trans: true
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG

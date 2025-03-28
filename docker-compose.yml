@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    depends_on:
+      - h2
+
+  h2:
+    image: oscarfonts/h2
+    ports:
+      - "9092:9092"
+      - "8082:8082"
+    environment:
+      H2_OPTIONS: '-tcp -tcpAllowOthers -web -webAllowOthers'

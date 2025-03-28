@@ -1,0 +1,58 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+    id 'jacoco'
+    id 'groovy'
+}
+
+apply from: 'coverage.gradle'
+
+group = 'com.tui'
+version = '2.0.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    springdocOpenapiUiVersion = '1.5.9'
+    mapstructVersion = '1.5.2.Final'
+}
+
+dependencies {
+    //Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    //Database
+    implementation 'com.h2database:h2'
+
+    //Util
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    implementation 'org.owasp.encoder:encoder:1.3.1'
+
+    //Docs
+    implementation "org.springdoc:springdoc-openapi-ui:1.8.0"
+    implementation 'net.sourceforge.findbugs:jsr305:1.3.7'
+
+    //Test
+    implementation 'org.codehaus.groovy:groovy:3.0.9'
+    testImplementation 'org.spockframework:spock-core:2.3-groovy-3.0'
+    testImplementation 'org.spockframework:spock-spring:2.3-groovy-3.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+}
+
+test {
+    useJUnitPlatform()
+    jvmArgs "-Xms2g", "-Xmx2g", "-XX:+DisableExplicitGC"
+    finalizedBy jacocoTestReport
+}
